@@ -70,7 +70,7 @@ void allocate_memory(struct Process processes[], int i, struct MemoryHole *chose
     print_memory_holes(chosen_hole);
 }
 
-void deallocate_memory(struct Process processes[], int i, int n, struct MemoryHole **head, int time)
+void deallocate_memory(struct Process processes[], int i, struct MemoryHole **head)
 {
     printf("Deallocating memory of P%d at time %d\n", i, time);
     struct MemoryHole *new_hole = (struct MemoryHole *)malloc(sizeof(struct MemoryHole));
@@ -234,7 +234,7 @@ int main()
             }
             if (processes[i].allocated && time == processes[i].arrival_time + processes[i].lifetime)
             {
-                deallocate_memory(processes, i, n, &head, time);
+                deallocate_memory(processes, i, &head);
             }
         }
     }
